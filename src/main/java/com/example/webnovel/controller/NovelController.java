@@ -2,9 +2,10 @@ package com.example.webnovel.controller;
 
 import java.util.UUID;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,17 +25,13 @@ public class NovelController {
         this.novelService = novelService;
     }
 
-    @GetMapping("/health")
-    String health_check() {
-        return "OK";
-    }
-
     @PostMapping
-    public ResponseEntity<NovelResponse> createNovel(@RequestBody CreateNovelRequest novelRequest) {
+    public ResponseEntity<NovelResponse> createNovel(@Valid @RequestBody CreateNovelRequest novelRequest) {
         UUID novelId = novelService.createNovel(novelRequest.getTitle(), novelRequest.getAuthor(),
                 novelRequest.getDescription(), novelRequest.getGenre());
         NovelResponse novelResponse = new NovelResponse(novelId);
 
         return new ResponseEntity<>(novelResponse, HttpStatus.CREATED);
     }
+
 }

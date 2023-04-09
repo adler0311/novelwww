@@ -1,7 +1,6 @@
-package com.example.demo.controller
+package com.example.webnovel.controller
 
-import com.example.demo.dto.NovelRequest
-import com.example.demo.service.NovelService
+
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
@@ -14,7 +13,9 @@ import static org.mockito.Mockito.when
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-
+import com.example.webnovel.service.NovelService
+import com.example.webnovel.controller.schema.CreateNovelRequest
+import com.example.webnovel.controller.NovelController
 
 @WebMvcTest(NovelController)
 class NovelControllerTest extends Specification {
@@ -27,10 +28,11 @@ class NovelControllerTest extends Specification {
 
     def "Create novel successfully"() {
         given: "A valid novel request"
-        NovelRequest novelRequest = new NovelRequest(title: "소설 제목", author: "작가 이름", description: "소설 설명", genre: "소설 장르")
+        CreateNovelRequest novelRequest = new CreateNovelRequest(title: "소설 제목", author: "작가 이름", description: "소설 설명", genre: "소설 장르")
 
         and: "The service returns a valid novelId"
-        when(novelService.createNovel(novelRequest)).thenReturn([id: 1234L])
+        UUID novelId = UUID.randomUUID()
+        when(novelService.createNovel(novelRequest.getTitle(), novelRequest.getAuthor(), novelRequest.getDescription(), novelRequest.getGenre())).thenReturn(novelId)
 
         when: "The API is called"
         def requestBody = '{"title":"소설 제목","author":"작가 이름","description":"소설 설명","genre":"소설 장르"}'
@@ -40,7 +42,7 @@ class NovelControllerTest extends Specification {
                         .content(requestBody))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath('$.message').value("소설이 성공적으로 등록되었습니다."))
-                .andExpect(jsonPath('$.novelId').value(1234))
+                .andExpect(jsonPath('$.novelId').value(novelId.toString()))
 
         then: "The response contains the expected data"
         true

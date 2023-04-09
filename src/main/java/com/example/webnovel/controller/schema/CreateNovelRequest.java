@@ -1,9 +1,15 @@
 package com.example.webnovel.controller.schema;
 
+import javax.validation.constraints.NotNull;
+
 public class CreateNovelRequest {
+    @NotNull
     private String title;
+    @NotNull
     private String author;
+    @NotNull
     private String description;
+    @NotNull
     private String genre;
 
     public String getTitle() {
