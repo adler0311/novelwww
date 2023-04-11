@@ -1,16 +1,16 @@
 package com.example.webnovel.persistence;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Novel {
 
     @Id
-    @Column(name = "id", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @Column(nullable = false)
@@ -24,6 +24,9 @@ public class Novel {
 
     @Column(nullable = false)
     private String genre;
+
+    @OneToMany(mappedBy = "novel" ,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Volume> volumes = new ArrayList<>();
 
     public Novel() {
     }
