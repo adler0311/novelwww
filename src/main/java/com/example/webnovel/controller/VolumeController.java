@@ -2,6 +2,7 @@ package com.example.webnovel.controller;
 
 import com.example.webnovel.controller.schema.PurchaseVolumeRequest;
 import com.example.webnovel.controller.schema.VolumePurchaseResponse;
+import com.example.webnovel.persistence.PointNotEnoughException;
 import com.example.webnovel.persistence.VolumePurchase;
 import com.example.webnovel.service.PurchaseExistingException;
 import com.example.webnovel.service.VolumePurchaseService;
@@ -30,6 +31,8 @@ public class VolumeController {
             volumePurchase = volumePurchaseService.purchase(novelId, volumeId, purchaseVolumeRequest.getUserId());
         } catch (PurchaseExistingException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        } catch (PointNotEnoughException e) {
+            throw new RuntimeException(e);
         }
         return new ResponseEntity<>(new VolumePurchaseResponse(volumePurchase.getId()), HttpStatus.OK);
     }

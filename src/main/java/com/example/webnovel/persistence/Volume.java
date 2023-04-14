@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "volume")
 public class Volume {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,36 +17,38 @@ public class Volume {
     private String title;
 
     @CreationTimestamp
-    @Column(name = "written_datetime", nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false)
     private LocalDateTime writtenDateTime;
 
-    @Column(name = "series_number", nullable = false)
+    @Column(nullable = false)
     private Integer seriesNumber;
 
-    @Column(name = "number_of_pages", nullable = false)
+    @Column(nullable = false)
     private Integer numberOfPages;
 
-    @Column(name = "file_size", nullable = false)
+    @Column(nullable = false)
     private Long fileSize;
 
-    @Column(name = "is_paid", nullable = false)
-    private Boolean isPaid;
+    @Column(nullable = false)
+    private Long pointForPurchase;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "novel_id", nullable = false)
+    @JoinColumn(nullable = false)
     private Novel novel;
 
     @Version
-    @Column(name="version")
+    @Column
     private Long version;
 
-    public Volume(String title, LocalDateTime writtenDateTime, Integer seriesNumber, Integer numberOfPages, Long fileSize, Boolean isPaid) {
+    public Volume(String title, LocalDateTime writtenDateTime, Integer seriesNumber, Integer numberOfPages, Long fileSize, Long pointForPurchase) {
+        this.id = UUID.randomUUID();
         this.title = title;
         this.writtenDateTime = writtenDateTime;
         this.seriesNumber = seriesNumber;
         this.numberOfPages = numberOfPages;
         this.fileSize = fileSize;
-        this.isPaid = isPaid;
+        this.pointForPurchase = pointForPurchase;
     }
 
     public Volume() {
@@ -56,5 +57,17 @@ public class Volume {
 
     public void setSeriesNumber(int seriesNumber) {
         this.seriesNumber = seriesNumber;
+    }
+
+    public Long getPointForPurchase() {
+        return this.pointForPurchase;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setNovel(Novel novel) {
+        this.novel = novel;
     }
 }
