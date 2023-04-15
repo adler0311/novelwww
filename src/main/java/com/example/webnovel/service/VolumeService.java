@@ -2,7 +2,6 @@ package com.example.webnovel.service;
 
 import com.example.webnovel.persistence.Volume;
 import com.example.webnovel.persistence.VolumeRepository;
-import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 

@@ -22,7 +22,7 @@ public class VolumePurchaseService {
     }
 
     @Transactional
-    public VolumePurchase purchase(UUID novelId, Long volumeId, Long userId) throws Exception, PointNotEnoughException {
+    public VolumePurchase purchase(Long novelId, Long volumeId, Long userId) throws PointNotEnoughException {
         User purchaseUser = userRepository.getReferenceById(userId);
         Volume volumeToPurchase = volumeRepository.getReferenceById(volumeId);
         purchaseUser.usePoint(volumeToPurchase.getPointForPurchase());

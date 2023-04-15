@@ -3,7 +3,6 @@ package com.example.webnovel.persistence;
 import org.hibernate.annotations.SQLInsert;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 @Table(name = "volume_purchase", uniqueConstraints = {
@@ -22,9 +21,9 @@ public class VolumePurchase {
     private Long volumeId;
 
     @Column(nullable = false)
-    private UUID novelId;
+    private Long novelId;
 
-    public VolumePurchase(UUID novelId, Long volumeId, Long userId) {
+    public VolumePurchase(Long novelId, Long volumeId, Long userId) {
         this.novelId = novelId;
         this.volumeId = volumeId;
         this.userId = userId;
@@ -42,7 +41,7 @@ public class VolumePurchase {
         return volumeId;
     }
 
-    public UUID getNovelId() {
+    public Long getNovelId() {
         return novelId;
     }
 

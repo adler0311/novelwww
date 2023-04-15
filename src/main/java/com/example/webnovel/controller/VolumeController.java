@@ -23,16 +23,14 @@ public class VolumeController {
     @PostMapping("/{volumeId}")
     public ResponseEntity<VolumePurchaseResponse> purchaseVolume(
             @RequestBody PurchaseVolumeRequest purchaseVolumeRequest,
-            @PathVariable UUID novelId,
+            @PathVariable Long novelId,
             @PathVariable Long volumeId
     ) {
         VolumePurchase volumePurchase;
         try {
             volumePurchase = volumePurchaseService.purchase(novelId, volumeId, purchaseVolumeRequest.getUserId());
-        } catch (PurchaseExistingException e) {
+        } catch (PointNotEnoughException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
-        } catch (PointNotEnoughException | Exception e) {
-            throw new RuntimeException(e);
         }
         return new ResponseEntity<>(new VolumePurchaseResponse(volumePurchase.getId()), HttpStatus.OK);
     }

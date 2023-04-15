@@ -2,7 +2,6 @@ package com.example.webnovel.persistence;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import javax.persistence.*;
 
@@ -11,7 +10,7 @@ public class Novel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Long id;
 
     @Column(nullable = false)
     private String title;
@@ -38,11 +37,11 @@ public class Novel {
         this.genre = genre;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

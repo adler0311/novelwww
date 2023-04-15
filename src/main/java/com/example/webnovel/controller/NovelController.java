@@ -27,7 +27,7 @@ public class NovelController {
 
     @PostMapping
     public ResponseEntity<NovelResponse> createNovel(@Valid @RequestBody CreateNovelRequest novelRequest) {
-        UUID novelId = novelService.createNovel(novelRequest.getTitle(), novelRequest.getAuthor(),
+        Long novelId = novelService.createNovel(novelRequest.getTitle(), novelRequest.getAuthor(),
                 novelRequest.getDescription(), novelRequest.getGenre());
         NovelResponse novelResponse = new NovelResponse(novelId);
 
