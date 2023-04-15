@@ -1,11 +1,9 @@
 package com.example.webnovel.controller.schema;
 
-import java.util.UUID;
-
 public class VolumePurchaseResponse {
-    private final UUID volumePurchaseId;
+    private final Long volumePurchaseId;
 
-    public VolumePurchaseResponse(UUID volumePurchaseId) {
+    public VolumePurchaseResponse(Long volumePurchaseId) {
         this.volumePurchaseId = volumePurchaseId;
     }
 
@@ -13,7 +11,7 @@ public class VolumePurchaseResponse {
         return "단편을 성공적으로 구매하였습니다.";
     }
 
-    public UUID getVolumePurchaseId() {
+    public Long getVolumePurchaseId() {
         return volumePurchaseId;
     }
 }

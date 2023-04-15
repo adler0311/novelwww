@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.UUID;
 
-public interface VolumeRepository extends JpaRepository<Volume, UUID> {
+public interface VolumeRepository extends JpaRepository<Volume, Long> {
     @Query("SELECT COALESCE(MAX(v.seriesNumber), 0) FROM Volume v")
     Integer findMaxSeriesNumber();
 

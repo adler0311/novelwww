@@ -1,28 +1,30 @@
 package com.example.webnovel.persistence;
 
+import org.hibernate.annotations.SQLInsert;
+
 import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"volumeId", "userId"})
+@Table(name = "volume_purchase", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"volumeId", "userId"}),
 })
+@SQLInsert(sql = "INSERT IGNORE INTO volume_purchase(id, novel_id, volume_id, user_id) VALUES (?, ?, ?, ?)" )
 public class VolumePurchase {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Long id;
 
     @Column(nullable = false)
-    private UUID userId;
+    private Long userId;
 
     @Column(nullable = false)
-    private UUID volumeId;
+    private Long volumeId;
 
     @Column(nullable = false)
     private UUID novelId;
 
-    public VolumePurchase(UUID novelId, UUID volumeId, UUID userId) {
-        this.id = UUID.randomUUID();
+    public VolumePurchase(UUID novelId, Long volumeId, Long userId) {
         this.novelId = novelId;
         this.volumeId = volumeId;
         this.userId = userId;
@@ -32,11 +34,11 @@ public class VolumePurchase {
 
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public UUID getVolumeId() {
+    public Long getVolumeId() {
         return volumeId;
     }
 
@@ -44,7 +46,7 @@ public class VolumePurchase {
         return novelId;
     }
 
-    public UUID getUserId() {
+    public Long getUserId() {
         return userId;
     }
 }

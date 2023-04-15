@@ -4,13 +4,12 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity
 public class Volume {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Long id;
 
 
     @Column(nullable = false)
@@ -42,7 +41,6 @@ public class Volume {
     private Long version;
 
     public Volume(String title, LocalDateTime writtenDateTime, Integer seriesNumber, Integer numberOfPages, Long fileSize, Long pointForPurchase) {
-        this.id = UUID.randomUUID();
         this.title = title;
         this.writtenDateTime = writtenDateTime;
         this.seriesNumber = seriesNumber;
@@ -63,7 +61,7 @@ public class Volume {
         return this.pointForPurchase;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 

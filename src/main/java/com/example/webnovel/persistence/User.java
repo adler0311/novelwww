@@ -1,13 +1,12 @@
 package com.example.webnovel.persistence;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Long id;
 
     @Column(nullable = false)
     private String name;
@@ -16,7 +15,6 @@ public class User {
     private Long point;
 
     public User(String name, Long point) {
-        this.id = UUID.randomUUID();
         this.name = name;
         this.point = point;
     }
@@ -38,7 +36,7 @@ public class User {
 
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 }

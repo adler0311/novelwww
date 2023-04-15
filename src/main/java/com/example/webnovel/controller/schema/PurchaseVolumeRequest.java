@@ -1,15 +1,13 @@
 package com.example.webnovel.controller.schema;
 
-import java.util.UUID;
-
 public class PurchaseVolumeRequest {
-    private UUID userId;
+    private Long userId;
 
-    public PurchaseVolumeRequest(UUID userId) {
+    public PurchaseVolumeRequest(Long userId) {
         this.userId = userId;
     }
 
-    public UUID getUserId() {
+    public Long getUserId() {
         return userId;
     }
 }

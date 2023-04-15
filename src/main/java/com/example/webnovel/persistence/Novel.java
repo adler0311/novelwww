@@ -32,7 +32,6 @@ public class Novel {
     }
 
     public Novel(String title, String author, String description, String genre) {
-        this.id = UUID.randomUUID();
         this.title = title;
         this.author = author;
         this.description = description;
