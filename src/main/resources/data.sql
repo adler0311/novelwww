@@ -1,8 +1,8 @@
 -- novel
-INSERT INTO novel (id, author, description, genre, title, purchase_count) VALUES
-                                                              (1, 'George Orwell', 'A dystopian novel set in a totalitarian society controlled by the Party and its leader, Big Brother.', 'Dystopian Fiction', '1984', 55),
-                                                              (2, 'Harper Lee', 'A powerful story of racial injustice, childhood innocence, and the moral growth of a young girl named Scout.', 'Southern Gothic Fiction', 'To Kill a Mockingbird', 131),
-                                                              (3, 'Jane Austen', 'A romantic novel following the life of Elizabeth Bennet as she navigates love, marriage, and society in 19th-century England.', 'Romantic Fiction', 'Pride and Prejudice', 664444);
+INSERT INTO novel (id, author, description, genre, title, purchase_count, total_pages) VALUES
+                                                              (1, 'George Orwell', 'A dystopian novel set in a totalitarian society controlled by the Party and its leader, Big Brother.', 'Dystopian Fiction', '1984', 55, 999),
+                                                              (2, 'Harper Lee', 'A powerful story of racial injustice, childhood innocence, and the moral growth of a young girl named Scout.', 'Southern Gothic Fiction', 'To Kill a Mockingbird', 131, 999),
+                                                              (3, 'Jane Austen', 'A romantic novel following the life of Elizabeth Bennet as she navigates love, marriage, and society in 19th-century England.', 'Romantic Fiction', 'Pride and Prejudice', 664444, 999);
 
 -- user
 INSERT INTO user (id, name, point) VALUES
@@ -20,3 +20,10 @@ INSERT INTO volume (id, file_size, number_of_pages, point_for_purchase, series_n
                                                                                                                                         (6, 1000000, 243, 200, 1, 'Pride and Prejudice - Volume 1', 1, '1813-01-28 00:00:00.000000', 3),
                                                                                                                                         (7, 950000, 229, 200, 2, 'Pride and Prejudice - Volume 2', 1, '1813-01-28 00:00:00.000000', 3),
                                                                                                                                         (8, 900000, 222, 200, 3, 'Pride and Prejudice - Volume 3', 1, '1813-01-28 00:00:00.000000', 3);
+-- favorite novel
+INSERT INTO favorite_novel (id, user_id, novel_id, read_page) VALUES
+                                                           (1,1, 1, 3),
+                                                           (2,1, 2, 10),
+                                                           (3,1, 2, 20),
+                                                           (4,2, 3, 20);
+

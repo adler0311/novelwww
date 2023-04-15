@@ -28,7 +28,7 @@ public class NovelController {
     @PostMapping
     public ResponseEntity<NovelResponse> createNovel(@Valid @RequestBody CreateNovelRequest novelRequest) {
         Long novelId = novelService.createNovel(novelRequest.getTitle(), novelRequest.getAuthor(),
-                novelRequest.getDescription(), novelRequest.getGenre());
+                novelRequest.getDescription(), novelRequest.getGenre(), novelRequest.getTotalPage());
         NovelResponse novelResponse = new NovelResponse(novelId);
 
         return new ResponseEntity<>(novelResponse, HttpStatus.CREATED);

@@ -12,6 +12,9 @@ public class CreateNovelRequest {
     @NotNull
     private String genre;
 
+    @NotNull
+    private Integer totalPage;
+
     public String getTitle() {
         return title;
     }
@@ -44,4 +47,7 @@ public class CreateNovelRequest {
         this.genre = genre;
     }
 
+    public Integer getTotalPage() {
+        return totalPage;
+    }
 }

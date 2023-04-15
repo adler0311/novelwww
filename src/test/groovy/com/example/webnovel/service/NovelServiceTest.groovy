@@ -1,12 +1,15 @@
 package com.example.webnovel.service
 
+import com.example.webnovel.persistence.FavoriteNovelRepository
 import com.example.webnovel.persistence.Novel
 import com.example.webnovel.persistence.NovelRepository
+import com.example.webnovel.persistence.User
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.test.context.ActiveProfiles
 import spock.lang.Specification
+
 
 import static org.mockito.Mockito.when
 
@@ -24,7 +27,7 @@ class NovelServiceTest extends Specification {
         List<Novel> novels = []
         def random = new Random();
         for (int i = 1; i <= 10; i++) {
-            Novel novel = new Novel("title ${i}", "author", "desc ${i}", "fantasy")
+            Novel novel = new Novel("title ${i}", "author", "desc ${i}", "fantasy", 100)
             novel.setPurchaseCount(random.nextInt(1001))
             novels << novel
         }
@@ -44,7 +47,7 @@ class NovelServiceTest extends Specification {
         List<Novel> novels = []
         def random = new Random();
         for (int i = 1; i <= 2; i++) {
-            Novel novel = new Novel("title ${i}", "author", "desc ${i}", "fantasy")
+            Novel novel = new Novel("title ${i}", "author", "desc ${i}", "fantasy", 100)
             novel.setPurchaseCount(random.nextInt(1001))
             novels << novel
         }
@@ -54,7 +57,7 @@ class NovelServiceTest extends Specification {
         when: "cache put data"
         List<Novel> updatedNovels = []
         for (int i = 1; i <= 2; i++) {
-            Novel novel = new Novel("title ${i}", "author", "desc ${i}", "fantasy")
+            Novel novel = new Novel("title ${i}", "author", "desc ${i}", "fantasy", 100)
             novel.setPurchaseCount(random.nextInt(1001))
             updatedNovels << novel
         }

@@ -27,18 +27,22 @@ public class Novel {
     @Column(nullable = false, columnDefinition = "bigint default 0")
     private Long purchaseCount;
 
+    @Column(nullable = false)
+    private Integer totalPages;
+
     @OneToMany(mappedBy = "novel" ,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Volume> volumes = new ArrayList<>();
 
     public Novel() {
     }
 
-    public Novel(String title, String author, String description, String genre) {
+    public Novel(String title, String author, String description, String genre, Integer totalPages) {
         this.title = title;
         this.author = author;
         this.description = description;
         this.genre = genre;
         this.purchaseCount = 0L;
+        this.totalPages = totalPages;
     }
 
     public Long getId() {
@@ -87,5 +91,9 @@ public class Novel {
 
     public Long getPurchaseCount() {
         return purchaseCount;
+    }
+
+    public Integer getTotalPages() {
+        return totalPages;
     }
 }

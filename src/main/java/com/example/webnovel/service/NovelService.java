@@ -21,8 +21,8 @@ public class NovelService {
         this.novelRepository = novelRepository;
     }
 
-    public Long createNovel(String title, String author, String description, String genre) {
-        Novel novel = new Novel(title, author, description, genre);
+    public Long createNovel(String title, String author, String description, String genre, Integer totalPage) {
+        Novel novel = new Novel(title, author, description, genre, totalPage);
         Novel r = novelRepository.save(novel);
         return r.getId();
     }
