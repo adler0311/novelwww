@@ -38,4 +38,30 @@ class NovelServiceTest extends Specification {
         then: "best seller novel list returned"
         novels == bestSellers
     }
+
+    def "updateBestsellerNovelCache update cached data"() {
+        given: "cache best seller data"
+        List<Novel> novels = []
+        def random = new Random();
+        for (int i = 1; i <= 2; i++) {
+            Novel novel = new Novel("title ${i}", "author", "desc ${i}", "fantasy")
+            novel.setPurchaseCount(random.nextInt(1001))
+            novels << novel
+        }
+        when(novelRepository.getBestSellers()).thenReturn(novels)
+        novelService.getBestSellers()
+
+        when: "cache put data"
+        List<Novel> updatedNovels = []
+        for (int i = 1; i <= 2; i++) {
+            Novel novel = new Novel("title ${i}", "author", "desc ${i}", "fantasy")
+            novel.setPurchaseCount(random.nextInt(1001))
+            updatedNovels << novel
+        }
+        when(novelRepository.getBestSellers()).thenReturn(updatedNovels)
+        novelService.updateBestsellerNovelCache()
+
+        then: "cached best seller updated"
+        novelService.getBestSellers() == updatedNovels
+    }
 }

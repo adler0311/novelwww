@@ -21,10 +21,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework:spring-aspects'
 	implementation 'org.springframework.retry:spring-retry:1.0.3.RELEASE'
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
 
-	// https://mvnrepository.com/artifact/com.h2database/h2
+
 	testImplementation group: 'com.h2database', name: 'h2', version: '2.1.214'
-
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
     testImplementation 'org.spockframework:spock-spring:2.0-groovy-3.0'
