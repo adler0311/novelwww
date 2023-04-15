@@ -1,8 +1,8 @@
 -- novel
-INSERT INTO novel (id, author, description, genre, title) VALUES
-                                                              (1, 'George Orwell', 'A dystopian novel set in a totalitarian society controlled by the Party and its leader, Big Brother.', 'Dystopian Fiction', '1984'),
-                                                              (2, 'Harper Lee', 'A powerful story of racial injustice, childhood innocence, and the moral growth of a young girl named Scout.', 'Southern Gothic Fiction', 'To Kill a Mockingbird'),
-                                                              (3, 'Jane Austen', 'A romantic novel following the life of Elizabeth Bennet as she navigates love, marriage, and society in 19th-century England.', 'Romantic Fiction', 'Pride and Prejudice');
+INSERT INTO novel (id, author, description, genre, title, purchase_count) VALUES
+                                                              (1, 'George Orwell', 'A dystopian novel set in a totalitarian society controlled by the Party and its leader, Big Brother.', 'Dystopian Fiction', '1984', 55),
+                                                              (2, 'Harper Lee', 'A powerful story of racial injustice, childhood innocence, and the moral growth of a young girl named Scout.', 'Southern Gothic Fiction', 'To Kill a Mockingbird', 131),
+                                                              (3, 'Jane Austen', 'A romantic novel following the life of Elizabeth Bennet as she navigates love, marriage, and society in 19th-century England.', 'Romantic Fiction', 'Pride and Prejudice', 664444);
 
 -- user
 INSERT INTO user (id, name, point) VALUES

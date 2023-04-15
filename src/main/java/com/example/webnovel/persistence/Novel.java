@@ -24,6 +24,9 @@ public class Novel {
     @Column(nullable = false)
     private String genre;
 
+    @Column(nullable = false, columnDefinition = "bigint default 0")
+    private Long purchaseCount;
+
     @OneToMany(mappedBy = "novel" ,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Volume> volumes = new ArrayList<>();
 
@@ -35,6 +38,7 @@ public class Novel {
         this.author = author;
         this.description = description;
         this.genre = genre;
+        this.purchaseCount = 0L;
     }
 
     public Long getId() {
@@ -77,4 +81,11 @@ public class Novel {
         this.genre = genre;
     }
 
+    public void setPurchaseCount(Long purchaseCount) {
+        this.purchaseCount = purchaseCount;
+    }
+
+    public Long getPurchaseCount() {
+        return purchaseCount;
+    }
 }

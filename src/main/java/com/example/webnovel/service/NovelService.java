@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import com.example.webnovel.persistence.Novel;
 import com.example.webnovel.persistence.NovelRepository;
 
+import java.util.List;
+
 @Service
 public class NovelService {
     private final NovelRepository novelRepository;
@@ -19,4 +21,7 @@ public class NovelService {
         return r.getId();
     }
 
+    public List<Novel> getBestSellers() {
+        return novelRepository.getBestSellers();
+    }
 }
