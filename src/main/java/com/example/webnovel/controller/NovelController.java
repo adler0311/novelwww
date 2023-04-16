@@ -34,7 +34,8 @@ public class NovelController {
         return new ResponseEntity<>(novelResponse, HttpStatus.CREATED);
     }
 
-    @GetMapping
+
+    @GetMapping("/best-sellers")
     public ResponseEntity<NovelListResponse> getBestSellers() {
         List<Novel> novels = novelService.getBestSellers();
 

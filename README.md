@@ -66,3 +66,43 @@ This document provides a brief overview of the API, including request headers, b
 
 - **Code**: `409 Conflict`
 
+
+### Get Best Seller Novels
+- **URL**: `/api/novels/best-sellers`
+- **Method**: `GET`
+- **Request Header**: N/A
+- **Request Body**:
+
+#### Success Response
+
+- **Code**: `200 OK`
+- **Content**:
+
+```json
+{
+  "items": [
+    {
+      "id": 1,
+      "title": "Example Novel Title 1",
+      "author": "Example Author",
+      "description": "Example novel description",
+      "genre": "Example Genre",
+      "purchaseCount": 600
+    },     {
+      "id": 2,
+      "title": "Example Novel Title 2",
+      "author": "Example Author",
+      "description": "Example novel description",
+      "genre": "Example Genre",
+      "purchaseCount": 600
+    },     {
+      "id": 3,
+      "title": "Example Novel Title 3",
+      "author": "Example Author",
+      "description": "Example novel description",
+      "genre": "Example Genre",
+      "purchaseCount": 600
+    }
+  ]
+}
+```
