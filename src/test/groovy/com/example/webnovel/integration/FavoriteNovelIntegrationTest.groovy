@@ -1,28 +1,13 @@
 package com.example.webnovel.integration
 
 import com.example.webnovel.WebNovelApplication
-import com.example.webnovel.persistence.FavoriteNovel
-import com.example.webnovel.persistence.FavoriteNovelRepository
-import com.example.webnovel.persistence.Novel
-import com.example.webnovel.persistence.NovelRepository
-import com.example.webnovel.persistence.User
-import com.example.webnovel.persistence.UserRepository
-import com.example.webnovel.persistence.Volume
-import com.example.webnovel.persistence.VolumePurchaseRepository
-import com.example.webnovel.persistence.VolumeRepository
+import com.example.webnovel.persistence.*
 import com.example.webnovel.service.FavoriteNovelDto
 import com.example.webnovel.service.FavoriteNovelService
-import com.example.webnovel.service.VolumePurchaseService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.data.domain.PageRequest
 import org.springframework.test.context.ActiveProfiles
 import spock.lang.Specification
-
-import java.time.LocalDateTime
-import java.util.concurrent.CountDownLatch
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 @SpringBootTest(classes = WebNovelApplication.class)
 @ActiveProfiles("test")

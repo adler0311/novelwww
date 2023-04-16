@@ -56,8 +56,13 @@ class PurchaseIntegrationTest extends Specification {
 
         (0..<numConcurrentPurchases).each { _ ->
             executorService.execute {
-                volumePurchaseService.purchase(novel.getId(), volume.getId(), user.getId())
-                latch.countDown()
+                try {
+                    volumePurchaseService.purchase(volume.getId(), user.getId())
+                } catch (ignored) {
+                    System.out.println("integrity error occurred")
+                } finally {
+                    latch.countDown()
+                }
             }
         }
 
@@ -73,6 +78,4 @@ class PurchaseIntegrationTest extends Specification {
         User purchaseUser = userRepository.findById(user.getId()).get()
         purchaseUser.getPoint() == 9900L
     }
-
-
 }

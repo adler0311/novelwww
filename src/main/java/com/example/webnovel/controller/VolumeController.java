@@ -27,12 +27,10 @@ public class VolumeController {
             @PathVariable Long volumeId
     ) {
         try {
-            VolumePurchase volumePurchase = volumePurchaseService.purchase(novelId, volumeId, purchaseVolumeRequest.getUserId());
+            VolumePurchase volumePurchase = volumePurchaseService.purchase(volumeId, purchaseVolumeRequest.getUserId());
             return new ResponseEntity<>(new VolumePurchaseResponse(volumePurchase.getId()), HttpStatus.OK);
         } catch (PointNotEnoughException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
-
     }
-
 }

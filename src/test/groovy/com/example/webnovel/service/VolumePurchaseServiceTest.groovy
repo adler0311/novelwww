@@ -34,11 +34,11 @@ class VolumePurchaseServiceTest extends Specification {
 
     def "purchaseVolume should save volume payment and decrease user point"() {
         given: "prepare newPurchase"
-        Novel novel = new Novel("title", "author", "desc", "genre")
+        Novel novel = new Novel("title", "author", "desc", "genre", 100)
         Volume volumeToPurchase = new Volume("series 1", LocalDateTime.now(), 1, 250, 5_000_000L, 100L)
         volumeToPurchase.setNovel(novel)
         User aUser = new User("test user", 10000L)
-        VolumePurchase newPurchase = new VolumePurchase(novel.getId(), volumeToPurchase.getId(), aUser.getId())
+        VolumePurchase newPurchase = new VolumePurchase(volumeToPurchase, aUser)
 
         and: "mock volumeRepository method"
         when(volumeRepository.getReferenceById(volumeToPurchase.getId())).thenReturn(volumeToPurchase)
@@ -51,7 +51,7 @@ class VolumePurchaseServiceTest extends Specification {
         when(volumePurchaseRepository.save(ArgumentMatchers.any(VolumePurchase.class))).thenReturn(newPurchase)
 
         when: "purchase is called"
-        VolumePurchase savedPurchase = volumePurchaseService.purchase(novel.getId(), volumeToPurchase.getId(), aUser.getId())
+        VolumePurchase savedPurchase = volumePurchaseService.purchase(volumeToPurchase.getId(), aUser.getId())
 
         then: "The new purchase is saved and returned"
         savedPurchase == newPurchase
