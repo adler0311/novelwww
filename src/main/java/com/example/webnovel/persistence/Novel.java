@@ -1,5 +1,9 @@
 package com.example.webnovel.persistence;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +33,16 @@ public class Novel {
 
     @Column(nullable = false)
     private Integer totalPages;
+
+    @Column(name="create_dt", nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createDt;
+
+
+    @Column(name="update_dt", nullable = false)
+    @UpdateTimestamp
+    private LocalDateTime updateDt;
+
 
     @OneToMany(mappedBy = "novel" ,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Volume> volumes = new ArrayList<>();

@@ -1,6 +1,7 @@
 package com.example.webnovel.persistence;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -30,6 +31,15 @@ public class Volume {
 
     @Column(nullable = false)
     private Long pointForPurchase;
+
+    @Column(name="create_dt", nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createDt;
+
+
+    @Column(name="update_dt", nullable = false)
+    @UpdateTimestamp
+    private LocalDateTime updateDt;
 
 
     @ManyToOne(fetch = FetchType.LAZY)

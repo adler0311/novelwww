@@ -1,6 +1,10 @@
 package com.example.webnovel.persistence;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class User {
@@ -13,6 +17,16 @@ public class User {
 
     @Column(nullable = false, columnDefinition = "BIGINT DEFAULT 0")
     private Long point;
+
+    @Column(name="create_dt", nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createDt;
+
+
+    @Column(name="update_dt", nullable = false)
+    @UpdateTimestamp
+    private LocalDateTime updateDt;
+
 
     public User(String name, Long point) {
         this.name = name;
