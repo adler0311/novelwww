@@ -41,7 +41,7 @@ class PurchaseIntegrationTest extends Specification {
 
     def "testConcurrentPurchase"() {
         given: "Prepare test data"
-        Novel novel = new Novel("title", "author", "desc", "genre")
+        Novel novel = new Novel("title", "author", "desc", "genre", 5599)
         novel = novelRepository.saveAndFlush(novel)
         Volume volume = new Volume("series 1", LocalDateTime.now(), 1, 250, 5_000_000L, 100L)
         volume.setNovel(novel)

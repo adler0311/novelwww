@@ -5,7 +5,7 @@ INSERT INTO novel (id, author, description, genre, title, purchase_count, total_
                                                                                                                  (3, 'Jane Austen', 'A romantic novel following the life of Elizabeth Bennet as she navigates love, marriage, and society in 19th-century England.', 'Romantic Fiction', 'Pride and Prejudice', 664444, 999, '2023-01-03 00:00:00.000000', '2023-01-03 00:00:00.000000');
 
 -- user
-INSERT INTO user (id, name, point, create_dt, update_dt) VALUES
+INSERT INTO novel_user (id, name, point, create_dt, update_dt) VALUES
                                                              (1, 'Alice Johnson', 500, '2023-01-01 00:00:00.000000', '2023-01-01 00:00:00.000000'),
                                                              (2, 'Bob Smith', 300, '2023-01-01 00:00:00.000000', '2023-01-01 00:00:00.000000'),
                                                              (3, 'Cynthia Williams', 1200, '2023-01-01 00:00:00.000000', '2023-01-01 00:00:00.000000');

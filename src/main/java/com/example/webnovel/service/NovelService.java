@@ -39,13 +39,4 @@ public class NovelService {
         System.out.println("update best seller novel cache");
         return novelRepository.getBestSellers();
     }
-
-//    @Scheduled(fixedDelay = 1_000*20)
-    public void scheduleBestSellerCache() {
-        try {
-            updateBestsellerNovelCache();
-        } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 }
