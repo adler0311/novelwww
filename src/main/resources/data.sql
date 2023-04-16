@@ -10,9 +10,9 @@ INSERT INTO novel_user (id, name, point, create_dt, update_dt) VALUES
                                                              (2, 'Bob Smith', 300, '2023-01-01 00:00:00.000000', '2023-01-01 00:00:00.000000'),
                                                              (3, 'Cynthia Williams', 1200, '2023-01-01 00:00:00.000000', '2023-01-01 00:00:00.000000');
 
--- volume
--- volume
-INSERT INTO volume (id, file_size, number_of_pages, point_for_purchase, series_number, title, version, written_date_time, novel_id, create_dt, update_dt) VALUES
+-- episode
+-- episode
+INSERT INTO episode (id, file_size, number_of_pages, point_for_purchase, series_number, title, version, written_date_time, novel_id, create_dt, update_dt) VALUES
                                                                                                                                                               (1, 900000, 326, 200, 1, '1984 - Part 1', 1, '1949-06-08 00:00:00.000000', 1, '2023-01-01 00:00:00.000000', '2023-01-01 00:00:00.000000'),
                                                                                                                                                               (2, 850000, 303, 200, 2, '1984 - Part 2', 1, '1949-06-08 00:00:00.000000', 1, '2023-01-01 00:00:00.000000', '2023-01-01 00:00:00.000000'),
                                                                                                                                                               (3, 800000, 290, 200, 3, '1984 - Part 3', 1, '1949-06-08 00:00:00.000000', 1, '2023-01-01 00:00:00.000000', '2023-01-01 00:00:00.000000'),
@@ -30,8 +30,8 @@ INSERT INTO favorite_novel (id, user_id, novel_id, read_page, create_dt, update_
                                                                                         (4, 2, 3, 20, '2023-01-04 00:00:00.000000', '2023-01-04 00:00:00.000000');
 
 
--- volume purchase
-INSERT INTO volume_purchase (id, user_id, volume_id, create_dt, update_dt) VALUES
+-- episode purchase
+INSERT INTO episode_purchase (id, user_id, episode_id, create_dt, update_dt) VALUES
                                                                                         (1, 1, 1, '2023-01-01 00:00:00.000000', '2023-01-01 00:00:00.000000'),
                                                                                         (2, 1, 5, '2023-01-02 00:00:00.000000', '2023-01-02 00:00:00.000000'),
                                                                                         (3, 1, 6, '2023-01-03 00:00:00.000000', '2023-01-03 00:00:00.000000'),

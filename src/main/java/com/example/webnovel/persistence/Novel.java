@@ -45,7 +45,7 @@ public class Novel {
 
 
     @OneToMany(mappedBy = "novel" ,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Volume> volumes = new ArrayList<>();
+    private List<Episode> episodes = new ArrayList<>();
 
     public Novel() {
     }

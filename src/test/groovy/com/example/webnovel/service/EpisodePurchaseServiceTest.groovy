@@ -14,16 +14,16 @@ import static org.mockito.Mockito.when
 
 @SpringBootTest
 @ActiveProfiles("test")
-class VolumePurchaseServiceTest extends Specification {
+class EpisodePurchaseServiceTest extends Specification {
 
     @Autowired
-    VolumePurchaseService volumePurchaseService
+    EpisodePurchaseService episodePurchaseService
 
     @MockBean
-    VolumePurchaseRepository volumePurchaseRepository
+    EpisodePurchaseRepository episodePurchaseRepository
 
     @MockBean
-    VolumeRepository volumeRepository
+    EpisodeRepository episodeRepository
 
     @MockBean
     UserRepository userRepository
@@ -32,26 +32,26 @@ class VolumePurchaseServiceTest extends Specification {
     NovelRepository novelRepository
 
 
-    def "purchaseVolume should save volume payment and decrease user point"() {
+    def "purchaseEpisode should save episode payment and decrease user point"() {
         given: "prepare newPurchase"
         Novel novel = new Novel("title", "author", "desc", "genre", 100)
-        Volume volumeToPurchase = new Volume("series 1", LocalDateTime.now(), 1, 250, 5_000_000L, 100L)
-        volumeToPurchase.setNovel(novel)
+        Episode episodeToPurchase = new Episode("series 1", LocalDateTime.now(), 1, 250, 5_000_000L, 100L)
+        episodeToPurchase.setNovel(novel)
         User aUser = new User("test user", 10000L)
-        VolumePurchase newPurchase = new VolumePurchase(volumeToPurchase, aUser)
+        EpisodePurchase newPurchase = new EpisodePurchase(episodeToPurchase, aUser)
 
-        and: "mock volumeRepository method"
-        when(volumeRepository.getReferenceById(volumeToPurchase.getId())).thenReturn(volumeToPurchase)
+        and: "mock episodeRepository method"
+        when(episodeRepository.getReferenceById(episodeToPurchase.getId())).thenReturn(episodeToPurchase)
 
         and: "mock userRepository method"
         when(userRepository.getReferenceById(aUser.getId())).thenReturn(aUser)
 
-        and: "mock volumePurchaseRepository methods"
-        when(volumePurchaseRepository.findByVolumeIdAndUserId(volumeToPurchase.getId(), aUser.getId())).thenReturn(Optional.empty())
-        when(volumePurchaseRepository.save(ArgumentMatchers.any(VolumePurchase.class))).thenReturn(newPurchase)
+        and: "mock episodePurchaseRepository methods"
+        when(episodePurchaseRepository.findByEpisodeIdAndUserId(episodeToPurchase.getId(), aUser.getId())).thenReturn(Optional.empty())
+        when(episodePurchaseRepository.save(ArgumentMatchers.any(EpisodePurchase.class))).thenReturn(newPurchase)
 
         when: "purchase is called"
-        VolumePurchase savedPurchase = volumePurchaseService.purchase(volumeToPurchase.getId(), aUser.getId())
+        EpisodePurchase savedPurchase = episodePurchaseService.purchase(episodeToPurchase.getId(), aUser.getId())
 
         then: "The new purchase is saved and returned"
         savedPurchase == newPurchase

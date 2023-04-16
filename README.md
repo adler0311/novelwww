@@ -37,9 +37,9 @@ This document provides a brief overview of the API, including request headers, b
 - **Code**: `400 Bad Request`
 
 
-### Purchase Volume
+### Purchase Episode
 
-- **URL**: `/api/novels/{novelId}/volumes/{volumeId}/purchase`
+- **URL**: `/api/novels/{novelId}/episodes/{episodeId}/purchase`
 - **Method**: `POST`
 - **Request Header**: N/A
 - **Request Body**:
@@ -58,7 +58,7 @@ This document provides a brief overview of the API, including request headers, b
 ```json
 {
     "message": "단편을 성공적으로 구매하였습니다.",
-    "volumePurchaseId": 1234
+    "episodePurchaseId": 1234
 }
 ```
 

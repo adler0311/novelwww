@@ -1,17 +1,16 @@
 package com.example.webnovel.persistence;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.SQLInsert;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "volume_purchase", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"volume_id", "user_id"}),
+@Table(name = "episode_purchase", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"episode_id", "user_id"}),
 })
-public class VolumePurchase {
+public class EpisodePurchase {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -21,8 +20,8 @@ public class VolumePurchase {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="volume_id", nullable = false)
-    private Volume volume;
+    @JoinColumn(name="episode_id", nullable = false)
+    private Episode episode;
 
     @Column(name="create_dt", nullable = false, updatable = false)
     @CreationTimestamp
@@ -34,12 +33,12 @@ public class VolumePurchase {
     private LocalDateTime updateDt;
 
 
-    public VolumePurchase(Volume volume, User user) {
-        this.volume = volume;
+    public EpisodePurchase(Episode episode, User user) {
+        this.episode = episode;
         this.user = user;
     }
 
-    public VolumePurchase() {
+    public EpisodePurchase() {
 
     }
 

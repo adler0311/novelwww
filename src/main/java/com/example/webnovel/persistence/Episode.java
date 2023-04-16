@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class Volume {
+public class Episode {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -50,7 +50,7 @@ public class Volume {
     @Column
     private Long version;
 
-    public Volume(String title, LocalDateTime writtenDateTime, Integer seriesNumber, Integer numberOfPages, Long fileSize, Long pointForPurchase) {
+    public Episode(String title, LocalDateTime writtenDateTime, Integer seriesNumber, Integer numberOfPages, Long fileSize, Long pointForPurchase) {
         this.title = title;
         this.writtenDateTime = writtenDateTime;
         this.seriesNumber = seriesNumber;
@@ -59,7 +59,7 @@ public class Volume {
         this.pointForPurchase = pointForPurchase;
     }
 
-    public Volume() {
+    public Episode() {
 
     }
 

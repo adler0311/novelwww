@@ -1,9 +1,9 @@
 package com.example.webnovel.controller.schema;
 
-public class PurchaseVolumeRequest {
+public class EpisodePurchaseRequest {
     private Long userId;
 
-    public PurchaseVolumeRequest(Long userId) {
+    public EpisodePurchaseRequest(Long userId) {
         this.userId = userId;
     }
 

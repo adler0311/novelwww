@@ -5,11 +5,10 @@ import com.example.webnovel.persistence.Novel
 import com.example.webnovel.persistence.NovelRepository
 import com.example.webnovel.persistence.User
 import com.example.webnovel.persistence.UserRepository
-import com.example.webnovel.persistence.Volume
-import com.example.webnovel.persistence.VolumePurchaseRepository
-import com.example.webnovel.persistence.VolumeRepository
-import com.example.webnovel.service.PurchaseExistingException
-import com.example.webnovel.service.VolumePurchaseService
+import com.example.webnovel.persistence.Episode
+import com.example.webnovel.persistence.EpisodePurchaseRepository
+import com.example.webnovel.persistence.EpisodeRepository
+import com.example.webnovel.service.EpisodePurchaseService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
@@ -17,7 +16,6 @@ import spock.lang.Specification
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import java.util.concurrent.atomic.AtomicInteger
 import java.time.LocalDateTime
 
 @SpringBootTest(classes = WebNovelApplication.class)
@@ -31,21 +29,21 @@ class PurchaseIntegrationTest extends Specification {
     UserRepository userRepository
 
     @Autowired
-    VolumeRepository volumeRepository
+    EpisodeRepository episodeRepository
 
     @Autowired
-    VolumePurchaseRepository volumePurchaseRepository
+    EpisodePurchaseRepository episodePurchaseRepository
 
     @Autowired
-    VolumePurchaseService volumePurchaseService
+    EpisodePurchaseService episodePurchaseService
 
     def "testConcurrentPurchase"() {
         given: "Prepare test data"
         Novel novel = new Novel("title", "author", "desc", "genre", 5599)
         novel = novelRepository.saveAndFlush(novel)
-        Volume volume = new Volume("series 1", LocalDateTime.now(), 1, 250, 5_000_000L, 100L)
-        volume.setNovel(novel)
-        volumeRepository.saveAndFlush(volume)
+        Episode episode = new Episode("series 1", LocalDateTime.now(), 1, 250, 5_000_000L, 100L)
+        episode.setNovel(novel)
+        episodeRepository.saveAndFlush(episode)
         User user = new User("test user", 10000L)
         userRepository.saveAndFlush(user)
 
@@ -57,7 +55,7 @@ class PurchaseIntegrationTest extends Specification {
         (0..<numConcurrentPurchases).each { _ ->
             executorService.execute {
                 try {
-                    volumePurchaseService.purchase(volume.getId(), user.getId())
+                    episodePurchaseService.purchase(episode.getId(), user.getId())
                 } catch (ignored) {
                     System.out.println("integrity error occurred")
                 } finally {
@@ -70,9 +68,9 @@ class PurchaseIntegrationTest extends Specification {
         latch.await()
         executorService.shutdown()
 
-        and: "Assert volumePurchase created only once"
-        def createdVolumePurchases = volumePurchaseRepository.findAll()
-        createdVolumePurchases.size() == 1
+        and: "Assert episodePurchase created only once"
+        def createdEpisodePurchases = episodePurchaseRepository.findAll()
+        createdEpisodePurchases.size() == 1
 
         and: "Assert user point decreased only once"
         User purchaseUser = userRepository.findById(user.getId()).get()
