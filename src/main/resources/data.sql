@@ -11,7 +11,6 @@ INSERT INTO novel_user (id, name, point, create_dt, update_dt) VALUES
                                                              (3, 'Cynthia Williams', 1200, '2023-01-01 00:00:00.000000', '2023-01-01 00:00:00.000000');
 
 -- episode
--- episode
 INSERT INTO episode (id, file_size, number_of_pages, point_for_purchase, series_number, title, version, written_date_time, novel_id, create_dt, update_dt) VALUES
                                                                                                                                                               (1, 900000, 326, 200, 1, '1984 - Part 1', 1, '1949-06-08 00:00:00.000000', 1, '2023-01-01 00:00:00.000000', '2023-01-01 00:00:00.000000'),
                                                                                                                                                               (2, 850000, 303, 200, 2, '1984 - Part 2', 1, '1949-06-08 00:00:00.000000', 1, '2023-01-01 00:00:00.000000', '2023-01-01 00:00:00.000000'),
