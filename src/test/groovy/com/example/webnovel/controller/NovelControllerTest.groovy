@@ -28,14 +28,14 @@ class NovelControllerTest extends Specification {
 
     def "Create novel successfully"() {
         given: "A valid novel request"
-        CreateNovelRequest novelRequest = new CreateNovelRequest(title: "소설 제목", author: "작가 이름", description: "소설 설명", genre: "소설 장르")
+        CreateNovelRequest novelRequest = new CreateNovelRequest(title: "소설 제목", author: "작가 이름", description: "소설 설명", genre: "소설 장르", totalPage: 456)
 
         and: "The service returns a valid novelId"
-        UUID novelId = UUID.randomUUID()
-        when(novelService.createNovel(novelRequest.getTitle(), novelRequest.getAuthor(), novelRequest.getDescription(), novelRequest.getGenre())).thenReturn(novelId)
+        Long novelId = 1L;
+        when(novelService.createNovel(novelRequest.getTitle(), novelRequest.getAuthor(), novelRequest.getDescription(), novelRequest.getGenre(), novelRequest.getTotalPage())).thenReturn(novelId)
 
         when: "The API is called"
-        def requestBody = '{"title":"소설 제목","author":"작가 이름","description":"소설 설명","genre":"소설 장르"}'
+        def requestBody = '{"title":"소설 제목","author":"작가 이름","description":"소설 설명","genre":"소설 장르", "totalPage": 456}'
         mockMvc.perform(
                 post("/api/novels")
                         .contentType(MediaType.APPLICATION_JSON)

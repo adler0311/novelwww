@@ -15,12 +15,15 @@ public class EpisodePurchaseService {
     private final UserRepository userRepository;
     private final EpisodeRepository episodeRepository;
 
+    private final EpisodeReadRepository episodeReadRepository;
 
 
-    public EpisodePurchaseService(EpisodePurchaseRepository episodePurchaseRepository, UserRepository userRepository, EpisodeRepository episodeRepository) {
+
+    public EpisodePurchaseService(EpisodePurchaseRepository episodePurchaseRepository, UserRepository userRepository, EpisodeRepository episodeRepository, EpisodeReadRepository episodeReadRepository) {
         this.episodePurchaseRepository = episodePurchaseRepository;
         this.userRepository = userRepository;
         this.episodeRepository = episodeRepository;
+        this.episodeReadRepository = episodeReadRepository;
     }
 
     @Transactional
@@ -39,7 +42,9 @@ public class EpisodePurchaseService {
         userRepository.save(purchaseUser);
 
         try {
-            return episodePurchaseRepository.save(new EpisodePurchase(episodeToPurchase, purchaseUser));
+            EpisodePurchase episodePurchase = episodePurchaseRepository.save(new EpisodePurchase(episodeToPurchase, purchaseUser));
+            episodeReadRepository.save(new EpisodeRead(purchaseUser, episodeToPurchase));
+            return episodePurchase;
         } catch (DataIntegrityViolationException ex) {
             throw new IllegalStateException("This user has already purchased this episode.");
         }

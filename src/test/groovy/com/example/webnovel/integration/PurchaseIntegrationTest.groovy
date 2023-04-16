@@ -41,7 +41,7 @@ class PurchaseIntegrationTest extends Specification {
         given: "Prepare test data"
         Novel novel = new Novel("title", "author", "desc", "genre", 5599)
         novel = novelRepository.saveAndFlush(novel)
-        Episode episode = new Episode("series 1", LocalDateTime.now(), 1, 250, 5_000_000L, 100L)
+        Episode episode = new Episode("series 1", LocalDateTime.now(), 1, 250, 5_000_000L, 100L, 100)
         episode.setNovel(novel)
         episodeRepository.saveAndFlush(episode)
         User user = new User("test user", 10000L)

@@ -18,6 +18,5 @@ public class EpisodeService {
         Integer maxSeriesNumber = episodeRepository.findMaxSeriesNumber();
         episode.setSeriesNumber(maxSeriesNumber + 1);
         return episodeRepository.save(episode);
-
     }
 }

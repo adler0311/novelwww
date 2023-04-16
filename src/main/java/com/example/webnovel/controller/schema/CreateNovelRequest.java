@@ -50,4 +50,8 @@ public class CreateNovelRequest {
     public Integer getTotalPage() {
         return totalPage;
     }
+
+    public void setTotalPage(Integer totalPage) {
+        this.totalPage = totalPage;
+    }
 }

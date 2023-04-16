@@ -32,19 +32,19 @@ class EpisodePurchaseServiceTest extends Specification {
     NovelRepository novelRepository
 
 
-    def "purchaseEpisode should save episode payment and decrease user point"() {
+    def "purchaseEpisode should save episode purchase and decrease user point"() {
         given: "prepare newPurchase"
         Novel novel = new Novel("title", "author", "desc", "genre", 100)
-        Episode episodeToPurchase = new Episode("series 1", LocalDateTime.now(), 1, 250, 5_000_000L, 100L)
+        Episode episodeToPurchase = new Episode("series 1", LocalDateTime.now(), 1, 250, 5_000_000L, 100L, 100)
         episodeToPurchase.setNovel(novel)
         User aUser = new User("test user", 10000L)
         EpisodePurchase newPurchase = new EpisodePurchase(episodeToPurchase, aUser)
 
         and: "mock episodeRepository method"
-        when(episodeRepository.getReferenceById(episodeToPurchase.getId())).thenReturn(episodeToPurchase)
+        when(episodeRepository.findById(episodeToPurchase.getId())).thenReturn(Optional.of(episodeToPurchase))
 
         and: "mock userRepository method"
-        when(userRepository.getReferenceById(aUser.getId())).thenReturn(aUser)
+        when(userRepository.findById(aUser.getId())).thenReturn(Optional.of(aUser))
 
         and: "mock episodePurchaseRepository methods"
         when(episodePurchaseRepository.findByEpisodeIdAndUserId(episodeToPurchase.getId(), aUser.getId())).thenReturn(Optional.empty())

@@ -29,4 +29,12 @@ public class EpisodeRead {
     @UpdateTimestamp
     private LocalDateTime updateDt;
 
+    @Column(name="read_page", nullable = false)
+    private Integer readPage;
+
+    public EpisodeRead(User purchaseUser, Episode episodeToPurchase) {
+        this.user = purchaseUser;
+        this.episode = episodeToPurchase;
+        this.readPage = 0;
+    }
 }

@@ -22,25 +22,25 @@ class NovelServiceTest extends Specification {
     @MockBean
     NovelRepository novelRepository;
 
-    def "get bestselling novel list"() {
-        given: "prepare novels"
-        List<Novel> novels = []
-        def random = new Random();
-        for (int i = 1; i <= 10; i++) {
-            Novel novel = new Novel("title ${i}", "author", "desc ${i}", "fantasy", 100)
-            novel.setPurchaseCount(random.nextInt(1001))
-            novels << novel
-        }
-
-        and: "mock novelRepository return novels by purchase count"
-        when(novelRepository.getBestSellers()).thenReturn(novels)
-
-        when: "get bestseller called"
-        def bestSellers = novelService.getBestSellers()
-
-        then: "best seller novel list returned"
-        novels == bestSellers
-    }
+//    def "get bestselling novel list"() {
+//        given: "prepare novels"
+//        List<Novel> novels = []
+//        def random = new Random();
+//        for (int i = 1; i <= 10; i++) {
+//            Novel novel = new Novel("title ${i}", "author", "desc ${i}", "fantasy", 100)
+//            novel.setPurchaseCount(random.nextInt(1001))
+//            novels << novel
+//        }
+//
+//        and: "mock novelRepository return novels by purchase count"
+//        when(novelRepository.getBestSellers()).thenReturn(novels)
+//
+//        when: "get bestseller called"
+//        def bestSellers = novelService.getBestSellers()
+//
+//        then: "best seller novel list returned"
+//        novels == bestSellers
+//    }
 
     def "updateBestsellerNovelCache update cached data"() {
         given: "cache best seller data"

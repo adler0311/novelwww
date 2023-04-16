@@ -42,21 +42,22 @@ public class Episode {
     private LocalDateTime updateDt;
 
 
+    private Integer totalPages;
+
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     private Novel novel;
 
-    @Version
-    @Column
-    private Long version;
 
-    public Episode(String title, LocalDateTime writtenDateTime, Integer seriesNumber, Integer numberOfPages, Long fileSize, Long pointForPurchase) {
+    public Episode(String title, LocalDateTime writtenDateTime, Integer seriesNumber, Integer numberOfPages, Long fileSize, Long pointForPurchase, Integer totalPages) {
         this.title = title;
         this.writtenDateTime = writtenDateTime;
         this.seriesNumber = seriesNumber;
         this.numberOfPages = numberOfPages;
         this.fileSize = fileSize;
         this.pointForPurchase = pointForPurchase;
+        this.totalPages = totalPages;
     }
 
     public Episode() {
