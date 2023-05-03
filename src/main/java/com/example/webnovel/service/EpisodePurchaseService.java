@@ -28,14 +28,17 @@ public class EpisodePurchaseService {
 
     @Transactional
     public EpisodePurchase purchase(Long episodeId, Long userId) throws PointNotEnoughException {
-        Optional<User> purchaseUserOptional = userRepository.findById(userId);
+        Optional<User> purchaseUserOptional = userRepository.findUserById(userId);
         Optional<Episode> episodeToPurchaseOptional = episodeRepository.findById(episodeId);
+
         if (!purchaseUserOptional.isPresent()) {
             throw new ObjectNotFoundException(userId, User.class.getName());
         }
+
         if (!episodeToPurchaseOptional.isPresent()) {
             throw new ObjectNotFoundException(episodeId, Episode.class.getName());
         }
+
         User purchaseUser = purchaseUserOptional.get();
         Episode episodeToPurchase = episodeToPurchaseOptional.get();
         purchaseUser.usePoint(episodeToPurchase.getPointForPurchase());
