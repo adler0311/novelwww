@@ -1,21 +1,24 @@
 package com.example.webnovel.service;
 
+import com.example.webnovel.persistence.Novel;
+import com.example.webnovel.persistence.NovelRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import com.example.webnovel.persistence.Novel;
-import com.example.webnovel.persistence.NovelRepository;
-
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
+
 
 @Service
 public class NovelService {
+    private final Logger log = LoggerFactory.getLogger(getClass());
+
     private final NovelRepository novelRepository;
+
+
 
     public NovelService(NovelRepository novelRepository) {
         this.novelRepository = novelRepository;
@@ -29,14 +32,14 @@ public class NovelService {
 
     @Cacheable("bestSellers")
     public List<Novel> getBestSellers() {
-        System.out.println("get best sellers no cache");
+        log.info("get best sellers no cache");
         return novelRepository.getBestSellers();
     }
 
     @Scheduled(fixedDelay = 1_000*60)
     @CachePut("bestSellers")
     public List<Novel> updateBestsellerNovelCache() {
-        System.out.println("update best seller novel cache");
+        log.info("update best seller novel cache");
         return novelRepository.getBestSellers();
     }
 }
