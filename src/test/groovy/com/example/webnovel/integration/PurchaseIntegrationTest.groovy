@@ -105,8 +105,9 @@ class PurchaseIntegrationTest extends Specification {
             executorService.execute {
                 try {
                     episodePurchaseService.purchase(episodes.get(i).getId(), user.getId())
-                } catch (ignored) {
-                    System.out.println("integrity error occurred")
+                } catch (e) {
+                    System.out.println(e)
+//                    System.out.println("integrity error occurred")
                 } finally {
                     latch.countDown()
                 }

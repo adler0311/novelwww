@@ -28,6 +28,8 @@ public class User {
     @UpdateTimestamp
     private LocalDateTime updateDt;
 
+    @Version
+    private int version;
 
     public User(String name, Long point) {
         this.name = name;

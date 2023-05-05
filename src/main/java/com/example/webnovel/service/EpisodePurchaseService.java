@@ -2,7 +2,11 @@ package com.example.webnovel.service;
 
 import com.example.webnovel.persistence.*;
 import org.hibernate.ObjectNotFoundException;
+import org.hibernate.OptimisticLockException;
+import org.hibernate.dialect.lock.OptimisticEntityLockException;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +30,7 @@ public class EpisodePurchaseService {
         this.episodeReadRepository = episodeReadRepository;
     }
 
+    @Retryable(include = {ObjectOptimisticLockingFailureException.class})
     @Transactional
     public EpisodePurchase purchase(Long episodeId, Long userId) throws PointNotEnoughException {
         Optional<User> purchaseUserOptional = userRepository.findUserById(userId);
