@@ -1,9 +1,14 @@
 package com.example.webnovel.integration
 
 import com.example.webnovel.WebNovelApplication
-import com.example.webnovel.persistence.*
-import com.example.webnovel.service.FavoriteNovelDto
-import com.example.webnovel.service.FavoriteNovelService
+import com.example.webnovel.novel.persistence.FavoriteNovel
+import com.example.webnovel.novel.persistence.FavoriteNovelRepository
+import com.example.webnovel.novel.persistence.Novel
+import com.example.webnovel.novel.persistence.NovelRepository
+import com.example.webnovel.novel.dto.FavoriteNovelDto
+import com.example.webnovel.novel.service.FavoriteNovelService
+import com.example.webnovel.user.persistence.User
+import com.example.webnovel.user.persistence.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles

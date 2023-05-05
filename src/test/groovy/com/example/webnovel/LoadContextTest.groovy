@@ -1,7 +1,7 @@
 import spock.lang.Specification
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import com.example.webnovel.controller.NovelController
+import com.example.webnovel.novel.controller.NovelController
 import com.example.webnovel.WebNovelApplication
 
 

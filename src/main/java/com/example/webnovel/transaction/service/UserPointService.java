@@ -1,7 +1,7 @@
 package com.example.webnovel.transaction.service;
 
-import com.example.webnovel.persistence.User;
-import com.example.webnovel.persistence.UserRepository;
+import com.example.webnovel.user.persistence.User;
+import com.example.webnovel.user.persistence.UserRepository;
 import com.example.webnovel.transaction.dto.UserPointChargeResponse;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.stereotype.Service;

@@ -1,14 +1,14 @@
 package com.example.webnovel.integration
 
 import com.example.webnovel.WebNovelApplication
-import com.example.webnovel.persistence.Novel
-import com.example.webnovel.persistence.NovelRepository
-import com.example.webnovel.persistence.User
-import com.example.webnovel.persistence.UserRepository
-import com.example.webnovel.persistence.Episode
-import com.example.webnovel.persistence.EpisodePurchaseRepository
-import com.example.webnovel.persistence.EpisodeRepository
-import com.example.webnovel.service.EpisodePurchaseService
+import com.example.webnovel.novel.persistence.Novel
+import com.example.webnovel.novel.persistence.NovelRepository
+import com.example.webnovel.user.persistence.User
+import com.example.webnovel.user.persistence.UserRepository
+import com.example.webnovel.episode.persistence.Episode
+import com.example.webnovel.transaction.persistence.EpisodePurchaseRepository
+import com.example.webnovel.episode.persistence.EpisodeRepository
+import com.example.webnovel.transaction.service.EpisodePurchaseService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
