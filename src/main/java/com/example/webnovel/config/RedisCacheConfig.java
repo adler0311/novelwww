@@ -13,8 +13,8 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.time.Duration;
 
-@Configuration
-@EnableCaching
+//@Configuration
+//@EnableCaching
 public class RedisCacheConfig {
     @Bean
     public CacheManager testCacheManager(RedisConnectionFactory cf) {
