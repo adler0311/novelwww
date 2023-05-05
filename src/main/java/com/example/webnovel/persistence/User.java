@@ -29,6 +29,7 @@ public class User {
     private LocalDateTime updateDt;
 
     @Version
+    @Column(columnDefinition = "INT DEFAULT 0")
     private int version;
 
     public User(String name, Long point) {
