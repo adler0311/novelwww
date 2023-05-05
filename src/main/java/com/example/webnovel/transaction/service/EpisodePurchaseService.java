@@ -4,7 +4,6 @@ import com.example.webnovel.episode.persistence.Episode;
 import com.example.webnovel.episode.persistence.EpisodeRead;
 import com.example.webnovel.episode.persistence.EpisodeReadRepository;
 import com.example.webnovel.episode.persistence.EpisodeRepository;
-import com.example.webnovel.persistence.*;
 import com.example.webnovel.transaction.persistence.EpisodePurchase;
 import com.example.webnovel.transaction.persistence.EpisodePurchaseRepository;
 import com.example.webnovel.transaction.persistence.PointNotEnoughException;
