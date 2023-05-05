@@ -41,6 +41,12 @@ public class User {
 
     }
 
+    public User(Long id, String name, Long point) {
+        this.id = id;
+        this.name = name;
+        this.point = point;
+    }
+
     public Long getPoint() {
         return point;
     }
@@ -56,5 +62,9 @@ public class User {
 
     public Long getId() {
         return id;
+    }
+
+    public void chargePoint(Long points) {
+        this.point += points;
     }
 }
