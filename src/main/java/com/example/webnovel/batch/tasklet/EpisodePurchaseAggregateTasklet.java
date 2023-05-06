@@ -1,7 +1,6 @@
 package com.example.webnovel.batch.tasklet;
 
 import com.example.webnovel.aggregation.dto.EpisodePurchaseAggregateDto;
-import com.example.webnovel.aggregation.persistence.EpisodePurchaseAggregate;
 import com.example.webnovel.aggregation.persistence.EpisodePurchaseAggregateRepository;
 import com.example.webnovel.transaction.persistence.EpisodePurchaseRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +11,6 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Slf4j
@@ -29,7 +27,10 @@ public class EpisodePurchaseAggregateTasklet implements Tasklet {
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
         List<EpisodePurchaseAggregateDto> episodePurchaseAggregateDtoList = episodePurchaseRepository.getEpisodeAggregatedResult();
         for (EpisodePurchaseAggregateDto episodePurchaseAggregateDto: episodePurchaseAggregateDtoList) {
-            episodePurchaseAggregateRepository.upsert(episodePurchaseAggregateDto.getEpisodeId(), episodePurchaseAggregateDto.getCount());
+            episodePurchaseAggregateRepository.upsert(
+                    episodePurchaseAggregateDto.getNovelId(),
+                    episodePurchaseAggregateDto.getEpisodeId(),
+                    episodePurchaseAggregateDto.getPurchaseCount());
 
         }
         return RepeatStatus.FINISHED;

@@ -1,8 +1,10 @@
 package com.example.webnovel.transaction.persistence;
 
 import com.example.webnovel.episode.persistence.Episode;
+import com.example.webnovel.novel.persistence.Novel;
 import com.example.webnovel.user.persistence.User;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -10,7 +12,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "episode_purchase", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"episode_id", "user_id"}),
+        @UniqueConstraint(columnNames = {"novel_id", "episode_id", "user_id"}),
 })
 public class EpisodePurchase {
     @Id
@@ -25,6 +27,10 @@ public class EpisodePurchase {
     @JoinColumn(name="episode_id", nullable = false)
     private Episode episode;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="novel_id", nullable = false)
+    private Novel novel;
+
     @Column(name="create_dt", nullable = false, updatable = false)
     @CreationTimestamp
     private LocalDateTime createDt;
@@ -38,6 +44,7 @@ public class EpisodePurchase {
     public EpisodePurchase(Episode episode, User user) {
         this.episode = episode;
         this.user = user;
+        this.novel = episode.getNovel();
     }
 
     public EpisodePurchase() {

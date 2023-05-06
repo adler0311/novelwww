@@ -88,4 +88,8 @@ public class Episode {
     public void increaseViewCount(int i) {
         this.viewCount += i;
     }
+
+    public Novel getNovel() {
+        return novel;
+    }
 }

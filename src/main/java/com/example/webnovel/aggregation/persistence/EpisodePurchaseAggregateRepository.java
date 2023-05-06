@@ -10,11 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 public interface EpisodePurchaseAggregateRepository extends JpaRepository<EpisodePurchaseAggregate, Long> {
     @Transactional
     @Modifying
-    @Query(value = "INSERT INTO episode_purchase_aggregate (id, episode_id, purchase_count, aggregate_at) " +
-            "VALUES (NULL, :episode_id, :purchase_count, LOCALTIMESTAMP) " +
+    @Query(value = "INSERT INTO episode_purchase_aggregate (id, novel_id, episode_id, purchase_count, aggregate_at) " +
+            "VALUES (NULL, :novel_id, :episode_id, :purchase_count, LOCALTIMESTAMP) " +
             "ON DUPLICATE KEY UPDATE " +
             "purchase_count = :purchase_count, aggregate_at = LOCALTIMESTAMP", nativeQuery = true)
-    void upsert(Long episode_id, Long purchase_count);
+    void upsert(Long novel_id, Long episode_id, Long purchase_count);
 
 
 

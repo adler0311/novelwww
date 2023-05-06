@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface EpisodePurchaseRepository extends JpaRepository<EpisodePurchase, Long> {
 
     Optional<EpisodePurchase> findByEpisodeIdAndUserId(Long episodeId, Long userId);
-    @Query("SELECT new com.example.webnovel.aggregation.dto.EpisodePurchaseAggregateDto(ep.episode.id, count(ep.episode.id)) FROM EpisodePurchase ep GROUP BY ep.episode.id")
+    @Query("SELECT new com.example.webnovel.aggregation.dto.EpisodePurchaseAggregateDto(ep.novel.id, ep.episode.id, count(*)) FROM EpisodePurchase ep GROUP BY ep.novel.id, ep.episode.id")
     List<EpisodePurchaseAggregateDto> getEpisodeAggregatedResult();
 
 }

@@ -3,14 +3,17 @@ package com.example.webnovel.aggregation.dto;
 import java.time.LocalDateTime;
 
 public class EpisodePurchaseAggregateDto {
+
+    private Long novelId;
     private Long episodeId;
-    private Long count;
+    private Long purchaseCount;
 
     private LocalDateTime aggregateAt;
 
-    public EpisodePurchaseAggregateDto(Long episodeId, Long count) {
+    public EpisodePurchaseAggregateDto(Long novelId, Long episodeId, Long purchaseCount) {
+        this.novelId = novelId;
         this.episodeId = episodeId;
-        this.count = count;
+        this.purchaseCount = purchaseCount;
         this.aggregateAt = LocalDateTime.now();
     }
 
@@ -18,11 +21,15 @@ public class EpisodePurchaseAggregateDto {
         return episodeId;
     }
 
-    public Long getCount() {
-        return count;
+    public Long getPurchaseCount() {
+        return purchaseCount;
     }
 
     public LocalDateTime getAggregateAt() {
         return aggregateAt;
+    }
+
+    public Long getNovelId() {
+        return novelId;
     }
 }

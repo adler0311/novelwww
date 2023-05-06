@@ -1,8 +1,6 @@
 package com.example.webnovel.aggregation.persistence;
 
 import com.example.webnovel.aggregation.dto.EpisodePurchaseAggregateDto;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,12 +8,15 @@ import java.time.LocalDateTime;
 @Entity
 @Table(
         name="episode_purchase_aggregate",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"episode_id"})
+        uniqueConstraints = @UniqueConstraint(columnNames = {"novel_id", "episode_id"})
 )
 public class EpisodePurchaseAggregate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "novel_id")
+    private Long novelId;
 
     @Column(name = "episode_id")
     private Long episodeId;
@@ -26,7 +27,7 @@ public class EpisodePurchaseAggregate {
 
     public EpisodePurchaseAggregate(EpisodePurchaseAggregateDto episodePurchaseAggregateDto) {
         this.episodeId = episodePurchaseAggregateDto.getEpisodeId();
-        this.purchaseCount = episodePurchaseAggregateDto.getCount();
+        this.purchaseCount = episodePurchaseAggregateDto.getPurchaseCount();
         this.aggregateAt = episodePurchaseAggregateDto.getAggregateAt();
     }
 
