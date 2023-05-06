@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface FavoriteNovelRepository extends JpaRepository<FavoriteNovel, Long> {
 
-    @Query("SELECT new com.example.webnovel.service.FavoriteNovelDto(fn.novelId, fn.userId, n.title, fn.readPage, n.totalPages) FROM FavoriteNovel fn \n" +
+    @Query("SELECT new com.example.webnovel.novel.dto.FavoriteNovelDto(fn.novelId, fn.userId, n.title, fn.readPage, n.totalPages) FROM FavoriteNovel fn \n" +
             "join Novel n\n" +
             "on fn.novelId = n.id\n" +
             "where fn.userId= :userId")

@@ -42,8 +42,12 @@ public class Episode {
     @UpdateTimestamp
     private LocalDateTime updateDt;
 
+    @Column(name="view_count", nullable = false, columnDefinition = "INT DEFAULT 0")
+    private Integer viewCount;
+
 
     private Integer totalPages;
+
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -79,5 +83,9 @@ public class Episode {
 
     public void setNovel(Novel novel) {
         this.novel = novel;
+    }
+
+    public void increaseViewCount(int i) {
+        this.viewCount += i;
     }
 }
