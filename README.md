@@ -10,9 +10,9 @@
 - 베스트 셀러 소설 조회는 요청이 많은 API일 수 있기 때문에 레디스 캐시를 사용하며 일정 주기마다 내부 스케줄러를 통해 갱신함. 실제 서비스에서는 API 서버 별이 아닌 별도의 스케줄러를 통해 실행. 
   그리고 실제 API 요청에 대한 응답은 레디스에 저장된 데이터를 반환함. 
 
-## API 문서
+### API 문서
 
-### Create a Novel
+#### Create a Novel
 
 - **URL**: `/api/novels`
 - **Method**: `POST`
@@ -28,7 +28,7 @@
 }
 ```
 
-#### Success Response
+##### Success Response
 
 - **Code**: `201 Created`
 - **Content**:
@@ -40,12 +40,12 @@
 }
 ```
 
-#### Error Response
+##### Error Response
 
 - **Code**: `400 Bad Request`
 
 
-### Purchase Episode
+#### Purchase Episode
 
 - **URL**: `/api/novels/{novelId}/episodes/{episodeId}/purchase`
 - **Method**: `POST`
@@ -58,7 +58,7 @@
 }
 ```
 
-#### Success Response
+##### Success Response
 
 - **Code**: `200 OK`
 - **Content**:
@@ -70,18 +70,18 @@
 }
 ```
 
-#### Error Response
+##### Error Response
 
 - **Code**: `409 Conflict`
 
 
-### Get Best Seller Novels
+#### Get Best Seller Novels
 - **URL**: `/api/novels/best-sellers`
 - **Method**: `GET`
 - **Request Header**: N/A
 - **Request Body**:
 
-#### Success Response
+##### Success Response
 
 - **Code**: `200 OK`
 - **Content**:
